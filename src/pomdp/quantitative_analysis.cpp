@@ -35,7 +35,7 @@ void define_belief_exploration(py::module& m, std::string const& vtSuffix) {
     belmc.def("get_exchange_value_map", &BeliefExplorationPomdpModelChecker<ValueType>::getExchangeValueMap);
     belmc.def("get_exchange_overapproximation_map", &BeliefExplorationPomdpModelChecker<ValueType>::getExchangeOverApproximationMap);
 
-    py::class_<typename storm::builder::BeliefMdpExplorer<Pomdp<ValueType>, ValueType>> belmdpexpl(m, ("BeliefMdpExplorer" + vtSuffix).c_str());
+    py::class_<storm::builder::BeliefMdpExplorer<Pomdp<ValueType>, ValueType>, std::shared_ptr<storm::builder::BeliefMdpExplorer<Pomdp<ValueType>, ValueType>>> belmdpexpl(m, ("BeliefMdpExplorer" + vtSuffix).c_str());
     belmdpexpl.def("set_fsc_values", &storm::builder::BeliefMdpExplorer<Pomdp<ValueType>, ValueType>::setFMSchedValueList, py::arg("value_list"), py::arg("index"));
     belmdpexpl.def("add_fsc_values", &storm::builder::BeliefMdpExplorer<Pomdp<ValueType>, ValueType>::addFMSchedValueList, py::arg("value_list"));
 
