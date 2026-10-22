@@ -18,7 +18,7 @@ void define_verification(py::module& m, std::string const& vtSuffix) {
     bepmc.def("get_interactive_belief_explorer", &storm::pomdp::modelchecker::BeliefExplorationPomdpModelChecker<storm::models::sparse::Pomdp<ValueType>>::getInteractiveBeliefExplorer);
     bepmc.def("has_converged", &storm::pomdp::modelchecker::BeliefExplorationPomdpModelChecker<storm::models::sparse::Pomdp<ValueType>>::hasConverged);
 
-    py::class_<typename storm::builder::BeliefMdpExplorer<storm::models::sparse::Pomdp<ValueType>>> bmdpe(m, ("BeliefMdpExplorer" + vtSuffix).c_str());
+    py::class_<typename storm::builder::BeliefMdpExplorer<storm::models::sparse::Pomdp<ValueType>>, std::shared_ptr<storm::builder::BeliefMdpExplorer<storm::models::sparse::Pomdp<ValueType>>>> bmdpe(m, ("BeliefMdpExplorer" + vtSuffix).c_str());
     bmdpe.def("set_fsc_values", &storm::builder::BeliefMdpExplorer<storm::models::sparse::Pomdp<ValueType>>::setFMSchedValueList, py::arg("value_list"));
 
     py::class_<Options> bepmcoptions(m, ("BeliefExplorationModelCheckerOptions" + vtSuffix).c_str());
